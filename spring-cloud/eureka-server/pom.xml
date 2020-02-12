@@ -36,8 +36,9 @@
 	</parent>
 
 	<artifactId>eureka-server</artifactId>
+	<packaging>jar</packaging>
 
-	<name>eureka-server</name>
+	<name>Eureka Server</name>
 	<description>Learning Eureka Server</description>
 
 	<dependencies>
