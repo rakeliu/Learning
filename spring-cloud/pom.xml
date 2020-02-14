@@ -41,13 +41,16 @@
 	<packaging>pom</packaging>
 
 	<name>spring-cloud</name>
-	<description>Demo project form Spring Cloud of learning</description>
+	<description>Spring Cloud 学习</description>
 
 	<modules>
 		<module>eureka-server</module>
 		<module>eureka-client</module>
 		<module>service-ribbon</module>
 		<module>service-feign</module>
+		<module>service-zuul</module>
+		<module>config-server</module>
+		<module>config-client</module>
 	</modules>
 
 	<properties>

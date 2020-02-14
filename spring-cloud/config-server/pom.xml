@@ -35,25 +35,21 @@
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>service-feign</artifactId>
+	<artifactId>config-server</artifactId>
 	<packaging>jar</packaging>
 
-	<name>Service Feign</name>
-	<description>Feign 负载模式</description>
+	<name>Config Server</name>
+	<description>Config Server 配置中心服务端</description>
 
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+			<artifactId>spring-cloud-starter-eureka</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-openfeign</artifactId>
-			<version>${spring-cloud.component.version.2}</version>
+			<artifactId>spring-cloud-config-server</artifactId>
 		</dependency>
 	</dependencies>
 </project>

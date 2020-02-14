@@ -39,7 +39,7 @@
 	<packaging>jar</packaging>
 
 	<name>Service Ribbon</name>
-	<description>Learning Service Ribbon</description>
+	<description>Ribbon 负载均衡模式</description>
 
 	<dependencies>
 		<dependency>
