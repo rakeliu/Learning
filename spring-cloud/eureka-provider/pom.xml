@@ -34,11 +34,8 @@
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>eureka-client</artifactId>
-	<packaging>jar</packaging>
-
-	<name>Eureka Client</name>
-	<description>Eureka Client 服务注册（微服务本身）</description>
+	<artifactId>eureka-provider</artifactId>
+	<description>Eureka Provider 服务生产者，注册到 Eureka Server上。</description>
 
 	<dependencies>
 		<dependency>

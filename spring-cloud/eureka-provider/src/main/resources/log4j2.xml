@@ -30,7 +30,7 @@
 		此配置指向 %Tomcat_Home%/logs 目录。
 		-->
 		<Property name="logDir">../logs</Property>
-		<Property name="appName">EurekaClient</Property>
+		<Property name="appName">EurekaProvider</Property>
 		<Property name="logFileName">SpringCloud-${appName}</Property>
 		<Property name="fullPattern">%d{yyyy-MM-dd HH:mm:ss,SSS} [${appName}] %-5level %class %M(%L) - %msg%xEx%n
 		</Property>

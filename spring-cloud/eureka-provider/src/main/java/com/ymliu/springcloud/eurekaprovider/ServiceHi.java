@@ -23,26 +23,27 @@
  *
  */
 
-package com.ymliu.springcloud.eurekaclient;
+package com.ymliu.springcloud.eurekaprovider;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-/**
- * Eureka Client 启动。
- */
-@SpringBootApplication
-@EnableEurekaClient
-public class EurekaClientApplication
+@RestController
+public class ServiceHi
 {
-	private static final Logger logger = LogManager.getLogger(EurekaClientApplication.class);
+	private static final Logger logger = LogManager.getLogger(ServiceHi.class);
 
-	public static void main(String[] args)
+	@Value("${server.port}")
+	String port;
+
+	@RequestMapping("hi")
+	public String home(@RequestParam(value = "name", defaultValue = "Liu Yamin") String name)
 	{
-		logger.info("启动 Eureka Client ...");
-		SpringApplication.run(EurekaClientApplication.class);
+		logger.info("name={}", name);
+		return "hi " + name + ", i am from port:" + port;
 	}
 }
