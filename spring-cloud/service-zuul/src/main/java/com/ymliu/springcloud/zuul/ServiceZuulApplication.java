@@ -23,27 +23,25 @@
  *
  */
 
-package com.ymliu.springcloud.eurekaserver;
+package com.ymliu.springcloud.zuul;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 
-/**
- * Eureka Server 启动
- * @author 刘亚敏
- */
+@EnableZuulProxy
+@EnableEurekaClient
 @SpringBootApplication
-@EnableEurekaServer
-public class EurekaServerApplication
+public class ServiceZuulApplication
 {
-	private static final Logger logger = LogManager.getLogger(EurekaServerApplication.class);
+	private static final Logger logger = LogManager.getLogger(ServiceZuulApplication.class);
 
 	public static void main(String[] args)
 	{
-		logger.info("启动 Eureka Server ...");
-		SpringApplication.run(EurekaServerApplication.class);
+		logger.info("启动 zuul ...");
+		SpringApplication.run(ServiceZuulApplication.class, args);
 	}
 }
