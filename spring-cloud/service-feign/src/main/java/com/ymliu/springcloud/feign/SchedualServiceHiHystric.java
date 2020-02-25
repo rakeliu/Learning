@@ -27,26 +27,17 @@ package com.ymliu.springcloud.feign;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.stereotype.Component;
 
-/**
- * Feign
- */
-@SpringBootApplication
-@EnableEurekaClient
-@EnableDiscoveryClient
-@EnableFeignClients
-public class ServiceFeignApplication
+@Component
+public class SchedualServiceHiHystric implements SchedualServiceHi
 {
-	private static final Logger logger = LogManager.getLogger(ServiceFeignApplication.class);
+	private static final Logger logger = LogManager.getLogger(SchedualServiceHiHystric.class);
 
-	public static void main(String[] args)
+	@Override
+	public String sayHiFromClientOne(String name)
 	{
-		logger.info("启动 Feign ...");
-		SpringApplication.run(ServiceFeignApplication.class);
+		logger.debug("hystrix feign, name = {}", name);
+		return "sorry " + name;
 	}
 }

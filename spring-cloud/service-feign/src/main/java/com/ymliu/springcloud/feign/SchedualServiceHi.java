@@ -25,28 +25,18 @@
 
 package com.ymliu.springcloud.feign;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
- * Feign
+ * 定义转发接口
+ * @author LYM
  */
-@SpringBootApplication
-@EnableEurekaClient
-@EnableDiscoveryClient
-@EnableFeignClients
-public class ServiceFeignApplication
+@FeignClient(value="service-hi", fallback = SchedualServiceHiHystric.class)
+public interface SchedualServiceHi
 {
-	private static final Logger logger = LogManager.getLogger(ServiceFeignApplication.class);
-
-	public static void main(String[] args)
-	{
-		logger.info("启动 Feign ...");
-		SpringApplication.run(ServiceFeignApplication.class);
-	}
+	@RequestMapping(value="/hi", method= RequestMethod.GET)
+	String sayHiFromClientOne(@RequestParam(value="name") String name);
 }

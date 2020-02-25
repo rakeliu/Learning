@@ -35,6 +35,10 @@ spring:
   application:
     name: service-feign
 
+feign:
+  hystrix:
+    enabled: true
+
 constant:
   eureka:
     server:
