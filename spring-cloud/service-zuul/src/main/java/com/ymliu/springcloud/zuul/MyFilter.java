@@ -25,31 +25,70 @@
 
 package com.ymliu.springcloud.zuul;
 
+import java.io.IOException;
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
-import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 
-@EnableZuulProxy
-@EnableEurekaClient
-@SpringBootApplication
-public class ServiceZuulApplication
+import com.netflix.zuul.ZuulFilter;
+import com.netflix.zuul.context.RequestContext;
+import com.netflix.zuul.exception.ZuulException;
+
+/**
+ * 服务过滤
+ *
+ * @author LYM
+ * @version 1.0
+ * 2020-3-10
+ */
+@Component
+public class MyFilter extends ZuulFilter
 {
-	private static final Logger logger = LogManager.getLogger(ServiceZuulApplication.class);
+	private static final Logger logger = LogManager.getLogger(MyFilter.class);
 
-	public static void main(String[] args)
+	@Override
+	public String filterType()
 	{
-		logger.info("启动 zuul ...");
-		SpringApplication.run(ServiceZuulApplication.class, args);
-		preRequestFilter();
+		return "pre";
 	}
 
-	@Bean
-	public static MyFilter preRequestFilter()
+	@Override
+	public int filterOrder()
 	{
-		return new MyFilter();
+		return 0;
+	}
+
+	@Override
+	public boolean shouldFilter()
+	{
+		return true;
+	}
+
+	@Override
+	public Object run() throws ZuulException
+	{
+		RequestContext ctx = RequestContext.getCurrentContext();
+		HttpServletRequest request = ctx.getRequest();
+		logger.info("{} >> {}", request.getMethod(), request.getRequestURL().toString());
+		Object accessToken = request.getParameter("token");
+		if (accessToken==null)
+		{
+			logger.warn("token is empty");
+			ctx.setSendZuulResponse(false);
+			ctx.setResponseStatusCode(401);
+			try {
+				ctx.getResponse().getWriter().write("token is empty");
+			}
+			catch (IOException e)
+			{
+				e.printStackTrace();
+			}
+			return null;
+		}
+
+		logger.info("ok");
+		return null;
 	}
 }
