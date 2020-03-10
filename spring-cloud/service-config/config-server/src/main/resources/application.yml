@@ -33,7 +33,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/rakeliu/Learning/spring-cloud
+          uri: https://github.com/rakeliu/Learning/
           search-paths: repos
           username:
           password:
