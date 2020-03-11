@@ -20,7 +20,6 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
 # DEALINGS IN THE SOFTWARE.
-#
 
 
 server:
@@ -38,3 +37,14 @@ spring:
           username:
           password:
       label: master
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${constant.eureka.server.hostname}:${constant.eureka.server.port}/eureka/
+
+constant:
+  eureka:
+    server:
+      hostname: localhost
+      port: 8761
