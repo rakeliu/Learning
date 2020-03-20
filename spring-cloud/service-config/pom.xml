@@ -30,6 +30,7 @@
 	<modules>
 		<module>config-server</module>
 		<module>config-client</module>
+		<module>bus-rabbitmq</module>
 	</modules>
 
 	<parent>
