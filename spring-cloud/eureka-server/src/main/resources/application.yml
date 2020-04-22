@@ -22,19 +22,51 @@
 # DEALINGS IN THE SOFTWARE.
 #
 
-
-server:
-  port: 8761
-
+spring:
+  application:
+    name: eureka-cluster
 eureka:
-  instance:
-    hostname: localhost
   client:
     register-with-eureka: false
     fetch-registry: false
-    service-url:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+#    service-url:
+#      defaultZone: ${constant.eureka-server}
 
+constant:
+  eureka-server: http://eureka-server1:18761/eureka, http://eureka-server2:18762/eureka, http://eureka-server3:18763/eureka
+
+---
+server:
+  port: 18761
+eureka:
+  instance:
+    hostname: eureka-server1
+  client:
+    service-url:
+      defaultZone: http://eureka-server2:18762/eureka, http://eureka-server3:18763/eureka
 spring:
-  application:
-    name: eureka-server
+  profiles: eureka18761
+
+---
+server:
+  port: 18762
+eureka:
+  instance:
+    hostname: eureka-server2
+  client:
+    service-url:
+      defaultZone: http://eureka-server1:18761/eureka, http://eureka-server3:18763/eureka
+spring:
+  profiles: eureka18762
+
+---
+server:
+  port: 18763
+eureka:
+  instance:
+    hostname: eureka-server3
+  client:
+    service-url:
+      defaultZone: http://eureka-server1:18762/eureka, http://eureka-server2:18763/eureka
+spring:
+  profiles: eureka18763

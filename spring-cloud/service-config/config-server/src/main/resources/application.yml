@@ -41,10 +41,7 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://${constant.eureka.server.hostname}:${constant.eureka.server.port}/eureka/
+      defaultZone: ${constant.eureka-server}
 
 constant:
-  eureka:
-    server:
-      hostname: localhost
-      port: 8761
+  eureka-server: http://eureka-server1:18761/eureka, http://eureka-server2:18762/eureka, http://eureka-server3:18763/eureka

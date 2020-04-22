@@ -57,12 +57,12 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<java.version>1.8</java.version>
-		<spring-cloud.version>Hoxton.SR1</spring-cloud.version>
-		<spring-cloud.component.version>1.4.7.RELEASE</spring-cloud.component.version>
-		<spring-cloud.component.version.2>2.2.1.RELEASE</spring-cloud.component.version.2>
+		<spring-cloud.version>Hoxton.SR3</spring-cloud.version>
+		<spring-cloud.component.version.1>1.4.7.RELEASE</spring-cloud.component.version.1>
+		<spring-cloud.component.version.2>2.2.2.RELEASE</spring-cloud.component.version.2>
 		<spring.version>5.1.8.RELEASE</spring.version>
 		<mybatis.version>3.5.2</mybatis.version>
-		<log4j.version>2.13.0</log4j.version>
+		<log4j2.version>2.13.1</log4j2.version>
 	</properties>
 
 	<dependencies>
@@ -77,6 +77,17 @@
 			</exclusions>
 		</dependency>
 
+		<!-- 热部署 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>springloaded</artifactId>
+			<version>1.2.0.M1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-log4j2</artifactId>
@@ -87,7 +98,7 @@
 			<!-- api, core -->
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-web</artifactId>
-			<version>${log4j.version}</version>
+			<version>${log4j2.version}</version>
 		</dependency>
 		<dependency>
 			<!-- 支持log4j2 异步日志 -->
