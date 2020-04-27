@@ -23,40 +23,48 @@
  *
  */
 
-package com.ymliu.effectivejava.chapter4;
+package com.ymliu.effectivejava.chapter4.section18;
 
-import java.time.Instant;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
-
-import com.ymliu.effectivejava.BaseTest;
-import com.ymliu.effectivejava.chapter4.section18.InstrumentedHashSet;
-import com.ymliu.effectivejava.chapter4.section18.InstrumentedSet;
-import com.ymliu.effectivejava.chapter4.section19.Sub;
+import java.util.Collection;
+import java.util.HashSet;
 
 /**
- * Chapter4. Classes and Interfaces
+ * Broken - Inappropriate use of inheritance!
+ *
  * @author LYM
  */
-public class Chapter4 implements BaseTest
+public class InstrumentedHashSet<E> extends HashSet<E>
 {
-	@Override
-	public void test()
+	/**
+	 * The number of attempted element insertions
+	 */
+	private int addCount = 0;
+
+	public InstrumentedHashSet() {}
+
+	public InstrumentedHashSet(int initCap, float loadFactor)
 	{
-		System.out.println("---- Chapter 4 ----------------");
+		super(initCap, loadFactor);
+	}
 
-		System.out.println("-------- Section 18 -----------");
-		InstrumentedHashSet<String> s = new InstrumentedHashSet<>();
-		s.addAll(List.of("Snap", "Crackle", "Pop"));
-		System.out.println("addCount = " + s.getAddCount());
+	@Override
+	public boolean add(E e)
+	{
+		addCount++;
+		return super.add(e);
+	}
 
-		System.out.println("-------- Section 18-1 ---------");
-		Set<String> original = Set.copyOf(List.of("Snap", "Crackle", "Pop"));
-		Set<String> s1 = new InstrumentedSet<String>(original);
+	@Override
+	public boolean addAll(Collection<? extends E> c)
+	{
+		addCount += c.size();
 
-		System.out.println("-------- Section 19 -----------");
-		Sub sub = new Sub();
-		sub.overrideMe();
+		// super.addAll will call super.add that call this.add ...
+		return super.addAll(c);
+	}
+
+	public int getAddCount()
+	{
+		return addCount;
 	}
 }

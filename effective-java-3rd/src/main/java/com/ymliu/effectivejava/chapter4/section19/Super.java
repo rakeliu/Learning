@@ -23,40 +23,20 @@
  *
  */
 
-package com.ymliu.effectivejava.chapter4;
-
-import java.time.Instant;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
-
-import com.ymliu.effectivejava.BaseTest;
-import com.ymliu.effectivejava.chapter4.section18.InstrumentedHashSet;
-import com.ymliu.effectivejava.chapter4.section18.InstrumentedSet;
-import com.ymliu.effectivejava.chapter4.section19.Sub;
+package com.ymliu.effectivejava.chapter4.section19;
 
 /**
- * Chapter4. Classes and Interfaces
- * @author LYM
+ * Broken - constructor invokes an overridable method.
  */
-public class Chapter4 implements BaseTest
+public class Super
 {
-	@Override
-	public void test()
+	public Super()
 	{
-		System.out.println("---- Chapter 4 ----------------");
+		overrideMe();
+	}
 
-		System.out.println("-------- Section 18 -----------");
-		InstrumentedHashSet<String> s = new InstrumentedHashSet<>();
-		s.addAll(List.of("Snap", "Crackle", "Pop"));
-		System.out.println("addCount = " + s.getAddCount());
-
-		System.out.println("-------- Section 18-1 ---------");
-		Set<String> original = Set.copyOf(List.of("Snap", "Crackle", "Pop"));
-		Set<String> s1 = new InstrumentedSet<String>(original);
-
-		System.out.println("-------- Section 19 -----------");
-		Sub sub = new Sub();
-		sub.overrideMe();
+	public void overrideMe()
+	{
+		System.out.println("call Super.overrideMe");
 	}
 }
