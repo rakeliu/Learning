@@ -23,39 +23,45 @@
  *
  */
 
-package com.ymliu.effectivejava;
+package com.ymliu.effectivejava.chapter6.section37;
 
-import com.ymliu.effectivejava.chapter2.Chapter2;
-import com.ymliu.effectivejava.chapter3.Chapter3;
-import com.ymliu.effectivejava.chapter4.Chapter4;
-import com.ymliu.effectivejava.chapter5.Chapter5;
-import com.ymliu.effectivejava.chapter6.Chapter6;
-
-public class MainTest
+/**
+ * Using ordinal() to index array of arrays - DON'T DO THIS!
+ *
+ * @author LYM
+ */
+public enum Phase
 {
-	public static void main(String[] args)
+	/**
+	 * 形态：固态、液态、气态
+	 */
+	SOLID,
+	LIQUID,
+	GAS;
+
+	public enum Transition
 	{
-		System.out.println("------ Run Test -----------");
-		long runStartTime = System.currentTimeMillis();
+		/**
+		 * 相变过程：融化、冰冻、沸腾...
+		 */
+		MELT,
+		FREEZE,
+		BOIL,
+		CONDENSE,
+		SUBLIME,
+		DEPOSIT;
 
-		BaseTest test = new Chapter2();
-		test.test();
-		test = null;
+		/**
+		 * Rows indexed by from-ordinal, cols by to ordinal
+		 */
+		private static final Transition[][] TRANSITIONS = {{null, MELT, SUBLIME}, {FREEZE, null, BOIL}, {DEPOSIT, CONDENSE, null}};
 
-		test = new Chapter3();
-		test.test();
-
-		test = new Chapter4();
-		test.test();
-
-		test = new Chapter5();
-		test.test();
-
-		test = new Chapter6();
-		test.test();
-
-		long runEndTime = System.currentTimeMillis();
-		System.out.printf("------ run cost time = %dms\n", runEndTime - runStartTime);
-		System.out.println("------ Test End -----------");
+		/**
+		 * Returns the phase transition from on phase to another
+		 */
+		public static Transition from(Phase from, Phase to)
+		{
+			return TRANSITIONS[from.ordinal()][to.ordinal()];
+		}
 	}
 }

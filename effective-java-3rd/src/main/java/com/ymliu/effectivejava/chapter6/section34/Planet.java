@@ -23,39 +23,59 @@
  *
  */
 
-package com.ymliu.effectivejava;
+package com.ymliu.effectivejava.chapter6.section34;
 
-import com.ymliu.effectivejava.chapter2.Chapter2;
-import com.ymliu.effectivejava.chapter3.Chapter3;
-import com.ymliu.effectivejava.chapter4.Chapter4;
-import com.ymliu.effectivejava.chapter5.Chapter5;
-import com.ymliu.effectivejava.chapter6.Chapter6;
-
-public class MainTest
+/**
+ * Enum typ with data and behavior
+ * @author LYM
+ */
+public enum Planet
 {
-	public static void main(String[] args)
+	/**
+	 * enum for eight planets
+	 */
+	MERCURY(3.302e+23, 2.439e6),
+	VENUS(4.869e+24, 6.052e6),
+	EARTH(5.975e+24, 6.378e6),
+	MARS(6.419e+23, 3.393e6),
+	JUPITER(1.899e+27, 7.149e7),
+	SATURN(5.685e+26, 6.027e7),
+	URANUS(8.683e+25, 2.556e7),
+	NEPTUNE(1.024e+26, 2.477e7);
+
+	/**
+	 * In kilograms
+	 */
+	private final double mass;
+	/**
+	 * In meters
+	 */
+	private final double radius;
+	/**
+	 * In m / s^2
+	 */
+	private final double surfaceGravity;
+	/**
+	 * Universal gravitational constant in m^3 / kg 2^2
+	 */
+	private static final double G = 6.67300E-11;
+
+	Planet(double mass, double radius)
 	{
-		System.out.println("------ Run Test -----------");
-		long runStartTime = System.currentTimeMillis();
+		this.mass = mass;
+		this.radius = radius;
+		surfaceGravity = G * mass / (radius * radius);
+	}
 
-		BaseTest test = new Chapter2();
-		test.test();
-		test = null;
+	public double mass() {return mass;}
 
-		test = new Chapter3();
-		test.test();
+	public double radius() {return radius;}
 
-		test = new Chapter4();
-		test.test();
+	public double surfaceGravity() {return surfaceGravity;}
 
-		test = new Chapter5();
-		test.test();
-
-		test = new Chapter6();
-		test.test();
-
-		long runEndTime = System.currentTimeMillis();
-		System.out.printf("------ run cost time = %dms\n", runEndTime - runStartTime);
-		System.out.println("------ Test End -----------");
+	public double surfaceWeight(double mass)
+	{
+		// F = ma
+		return mass * surfaceGravity;
 	}
 }

@@ -23,39 +23,12 @@
  *
  */
 
-package com.ymliu.effectivejava;
+package com.ymliu.effectivejava.chapter4.section23;
 
-import com.ymliu.effectivejava.chapter2.Chapter2;
-import com.ymliu.effectivejava.chapter3.Chapter3;
-import com.ymliu.effectivejava.chapter4.Chapter4;
-import com.ymliu.effectivejava.chapter5.Chapter5;
-import com.ymliu.effectivejava.chapter6.Chapter6;
-
-public class MainTest
+/**
+ * @author LYM
+ */
+public class Square extends Rectangle
 {
-	public static void main(String[] args)
-	{
-		System.out.println("------ Run Test -----------");
-		long runStartTime = System.currentTimeMillis();
-
-		BaseTest test = new Chapter2();
-		test.test();
-		test = null;
-
-		test = new Chapter3();
-		test.test();
-
-		test = new Chapter4();
-		test.test();
-
-		test = new Chapter5();
-		test.test();
-
-		test = new Chapter6();
-		test.test();
-
-		long runEndTime = System.currentTimeMillis();
-		System.out.printf("------ run cost time = %dms\n", runEndTime - runStartTime);
-		System.out.println("------ Test End -----------");
-	}
+	Square(double side) {super(side, side);}
 }

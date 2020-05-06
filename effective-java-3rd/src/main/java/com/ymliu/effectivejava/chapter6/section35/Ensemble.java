@@ -23,39 +23,32 @@
  *
  */
 
-package com.ymliu.effectivejava;
+package com.ymliu.effectivejava.chapter6.section35;
 
-import com.ymliu.effectivejava.chapter2.Chapter2;
-import com.ymliu.effectivejava.chapter3.Chapter3;
-import com.ymliu.effectivejava.chapter4.Chapter4;
-import com.ymliu.effectivejava.chapter5.Chapter5;
-import com.ymliu.effectivejava.chapter6.Chapter6;
-
-public class MainTest
+/**
+ * Do not use ordinal()
+ * 演奏人数类型
+ */
+public enum Ensemble
 {
-	public static void main(String[] args)
-	{
-		System.out.println("------ Run Test -----------");
-		long runStartTime = System.currentTimeMillis();
+	/**
+	 * 单人 solo
+	 */
+	SOLO(1),
+	DUET(2),
+	TRIO(3),
+	QUARTET(4),
+	QUINTET(5),
+	SEXTET(6),
+	SEPTET(7),
+	OCTET(8),
+	DOUBLE_QUARTET(8),
+	NONET(9),
+	DECTET(10),
+	TRIPLE_QUARTET(12);
+	private final int numberOfMusicians;
 
-		BaseTest test = new Chapter2();
-		test.test();
-		test = null;
+	Ensemble(int size) { this.numberOfMusicians = size; }
 
-		test = new Chapter3();
-		test.test();
-
-		test = new Chapter4();
-		test.test();
-
-		test = new Chapter5();
-		test.test();
-
-		test = new Chapter6();
-		test.test();
-
-		long runEndTime = System.currentTimeMillis();
-		System.out.printf("------ run cost time = %dms\n", runEndTime - runStartTime);
-		System.out.println("------ Test End -----------");
-	}
+	public int numberOfMusicians() { return numberOfMusicians; }
 }

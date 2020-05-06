@@ -23,39 +23,39 @@
  *
  */
 
-package com.ymliu.effectivejava;
+package com.ymliu.effectivejava.chapter6.section38;
 
-import com.ymliu.effectivejava.chapter2.Chapter2;
-import com.ymliu.effectivejava.chapter3.Chapter3;
-import com.ymliu.effectivejava.chapter4.Chapter4;
-import com.ymliu.effectivejava.chapter5.Chapter5;
-import com.ymliu.effectivejava.chapter6.Chapter6;
-
-public class MainTest
+/**
+ * 通过接口扩展
+ *
+ * @author LYM
+ */
+public enum ExtendedOperation implements Section38Operation
 {
-	public static void main(String[] args)
-	{
-		System.out.println("------ Run Test -----------");
-		long runStartTime = System.currentTimeMillis();
+	/**
+	 * 幂
+	 */
+	EXP("^")
+			{
+				@Override
+				public double apply(double x, double y)
+				{
+					return Math.pow(x, y);
+				}
+			},
+	REMAINDER("%")
+			{
+				@Override
+				public double apply(double x, double y)
+				{
+					return x % y;
+				}
+			};
 
-		BaseTest test = new Chapter2();
-		test.test();
-		test = null;
+	private final String symbol;
 
-		test = new Chapter3();
-		test.test();
+	ExtendedOperation(String symbol) {this.symbol = symbol;}
 
-		test = new Chapter4();
-		test.test();
-
-		test = new Chapter5();
-		test.test();
-
-		test = new Chapter6();
-		test.test();
-
-		long runEndTime = System.currentTimeMillis();
-		System.out.printf("------ run cost time = %dms\n", runEndTime - runStartTime);
-		System.out.println("------ Test End -----------");
-	}
+	@Override
+	public String toString() {return symbol;}
 }

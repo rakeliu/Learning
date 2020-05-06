@@ -23,39 +23,73 @@
  *
  */
 
-package com.ymliu.effectivejava;
+package com.ymliu.effectivejava.chapter4.section23;
 
-import com.ymliu.effectivejava.chapter2.Chapter2;
-import com.ymliu.effectivejava.chapter3.Chapter3;
-import com.ymliu.effectivejava.chapter4.Chapter4;
-import com.ymliu.effectivejava.chapter5.Chapter5;
-import com.ymliu.effectivejava.chapter6.Chapter6;
-
-public class MainTest
+/**
+ * 类层次结构优于标签类。
+ * Tagged class - vastly inferior to a class hierarchy!
+ *
+ * @author LYM
+ */
+public class Figure
 {
-	public static void main(String[] args)
+	enum Shape
 	{
-		System.out.println("------ Run Test -----------");
-		long runStartTime = System.currentTimeMillis();
+		/**
+		 * 多边形
+		 */
+		RECTANGLE,
+		/**
+		 * 圆形
+		 */
+		CIRCLE
+	}
 
-		BaseTest test = new Chapter2();
-		test.test();
-		test = null;
+	/**
+	 * Tag field - the shapre of this figure
+	 */
+	final Shape shape;
 
-		test = new Chapter3();
-		test.test();
+	/**
+	 * These fields are used only if shape is RECTANGLE
+	 */
+	double length;
+	double width;
 
-		test = new Chapter4();
-		test.test();
+	/**
+	 * This field is used only if shape is CIRCLE
+	 */
+	double radius;
 
-		test = new Chapter5();
-		test.test();
+	/**
+	 * Constructor for circle
+	 */
+	Figure(double radius)
+	{
+		shape = Shape.CIRCLE;
+		this.radius = radius;
+	}
 
-		test = new Chapter6();
-		test.test();
+	/**
+	 * Constructor for rectangle
+	 */
+	Figure(double length, double width)
+	{
+		shape = Shape.RECTANGLE;
+		this.length = length;
+		this.width = width;
+	}
 
-		long runEndTime = System.currentTimeMillis();
-		System.out.printf("------ run cost time = %dms\n", runEndTime - runStartTime);
-		System.out.println("------ Test End -----------");
+	double area()
+	{
+		switch (shape)
+		{
+			case RECTANGLE:
+				return length*width;
+			case CIRCLE:
+				return Math.PI*(radius*radius);
+			default:
+				throw new AssertionError(shape);
+		}
 	}
 }

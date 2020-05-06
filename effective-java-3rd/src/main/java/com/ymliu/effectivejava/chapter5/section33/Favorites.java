@@ -23,39 +23,28 @@
  *
  */
 
-package com.ymliu.effectivejava;
+package com.ymliu.effectivejava.chapter5.section33;
 
-import com.ymliu.effectivejava.chapter2.Chapter2;
-import com.ymliu.effectivejava.chapter3.Chapter3;
-import com.ymliu.effectivejava.chapter4.Chapter4;
-import com.ymliu.effectivejava.chapter5.Chapter5;
-import com.ymliu.effectivejava.chapter6.Chapter6;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
-public class MainTest
+/**
+ * Typesafe heterogeneous container pattern - implementation
+ *
+ * @author LYM
+ */
+public class Favorites
 {
-	public static void main(String[] args)
+	private Map<Class<?>, Object> favorites = new HashMap<>();
+
+	public <T> void putFavorite(Class<T> type, T instance)
 	{
-		System.out.println("------ Run Test -----------");
-		long runStartTime = System.currentTimeMillis();
+		favorites.put(Objects.requireNonNull(type), type.cast(instance));
+	}
 
-		BaseTest test = new Chapter2();
-		test.test();
-		test = null;
-
-		test = new Chapter3();
-		test.test();
-
-		test = new Chapter4();
-		test.test();
-
-		test = new Chapter5();
-		test.test();
-
-		test = new Chapter6();
-		test.test();
-
-		long runEndTime = System.currentTimeMillis();
-		System.out.printf("------ run cost time = %dms\n", runEndTime - runStartTime);
-		System.out.println("------ Test End -----------");
+	public <T> T getFavorite(Class<T> type)
+	{
+		return type.cast(favorites.get(type));
 	}
 }

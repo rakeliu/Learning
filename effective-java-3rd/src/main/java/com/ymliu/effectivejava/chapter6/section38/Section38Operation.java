@@ -23,39 +23,20 @@
  *
  */
 
-package com.ymliu.effectivejava;
+package com.ymliu.effectivejava.chapter6.section38;
 
-import com.ymliu.effectivejava.chapter2.Chapter2;
-import com.ymliu.effectivejava.chapter3.Chapter3;
-import com.ymliu.effectivejava.chapter4.Chapter4;
-import com.ymliu.effectivejava.chapter5.Chapter5;
-import com.ymliu.effectivejava.chapter6.Chapter6;
-
-public class MainTest
+/**
+ * 使用接口扩展枚举
+ * Emulated extensible enum using an interface
+ * @author LYM
+ */
+public interface Section38Operation
 {
-	public static void main(String[] args)
-	{
-		System.out.println("------ Run Test -----------");
-		long runStartTime = System.currentTimeMillis();
-
-		BaseTest test = new Chapter2();
-		test.test();
-		test = null;
-
-		test = new Chapter3();
-		test.test();
-
-		test = new Chapter4();
-		test.test();
-
-		test = new Chapter5();
-		test.test();
-
-		test = new Chapter6();
-		test.test();
-
-		long runEndTime = System.currentTimeMillis();
-		System.out.printf("------ run cost time = %dms\n", runEndTime - runStartTime);
-		System.out.println("------ Test End -----------");
-	}
+	/**
+	 * 应用 二元运算符，将两个参数结果返回。
+	 * @param x 二元运算符-参数一
+	 * @param y 二元运算符-参数二
+	 * @return 运算结果
+	 */
+	double apply(double x, double y);
 }

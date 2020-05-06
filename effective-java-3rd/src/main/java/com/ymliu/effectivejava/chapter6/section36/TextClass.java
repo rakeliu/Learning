@@ -23,39 +23,29 @@
  *
  */
 
-package com.ymliu.effectivejava;
+package com.ymliu.effectivejava.chapter6.section36;
 
-import com.ymliu.effectivejava.chapter2.Chapter2;
-import com.ymliu.effectivejava.chapter3.Chapter3;
-import com.ymliu.effectivejava.chapter4.Chapter4;
-import com.ymliu.effectivejava.chapter5.Chapter5;
-import com.ymliu.effectivejava.chapter6.Chapter6;
-
-public class MainTest
+/**
+ * Bit field enumeration constants - OBSOLETE!
+ *
+ * @author LYM
+ */
+public class TextClass
 {
-	public static void main(String[] args)
+	public static final int STYLE_BOLD = 1 << 0;
+	public static final int STYLE_ITALIC = 1 << 1;
+	public static final int STYLE_UNDERLINE = 1 << 2;
+	public static final int STYLE_STRIKETHROUGH = 1 << 3;
+
+	private int styles = 0;
+
+	/**
+	 * 按位或。
+	 *
+	 * @param styles 样式，可变长
+	 */
+	public void applyStyles(int... styles)
 	{
-		System.out.println("------ Run Test -----------");
-		long runStartTime = System.currentTimeMillis();
-
-		BaseTest test = new Chapter2();
-		test.test();
-		test = null;
-
-		test = new Chapter3();
-		test.test();
-
-		test = new Chapter4();
-		test.test();
-
-		test = new Chapter5();
-		test.test();
-
-		test = new Chapter6();
-		test.test();
-
-		long runEndTime = System.currentTimeMillis();
-		System.out.printf("------ run cost time = %dms\n", runEndTime - runStartTime);
-		System.out.println("------ Test End -----------");
+		for (int style : styles) {this.styles |= style;}
 	}
 }
