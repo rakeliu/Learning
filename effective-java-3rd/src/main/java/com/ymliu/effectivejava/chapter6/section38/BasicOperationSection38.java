@@ -23,46 +23,58 @@
  *
  */
 
-package com.ymliu.effectivejava;
-
-import com.ymliu.effectivejava.chapter2.Chapter2;
-import com.ymliu.effectivejava.chapter3.Chapter3;
-import com.ymliu.effectivejava.chapter4.Chapter4;
-import com.ymliu.effectivejava.chapter5.Chapter5;
-import com.ymliu.effectivejava.chapter6.Chapter6;
-import com.ymliu.effectivejava.chapter7.Chapter7;
+package com.ymliu.effectivejava.chapter6.section38;
 
 /**
+ * 基本枚举继承接口，可通过接口扩展枚举。
+ *
  * @author LYM
  */
-public class MainTest
+public enum BasicOperationSection38 implements OperationSection38
 {
-	public static void main(String[] args)
+	/**
+	 * 加法，使用匿名函数来继承接口
+	 */
+	PLUS("+")
+			{
+				@Override
+				public double apply(double x, double y)
+				{
+					return x + y;
+				}
+			},
+	MINUS("-")
+			{
+				@Override
+				public double apply(double x, double y)
+				{
+					return x - y;
+				}
+			},
+	TIMES("*")
+			{
+				@Override
+				public double apply(double x, double y)
+				{
+					return x * y;
+				}
+			},
+	DIVIDE("/")
+			{
+				@Override
+				public double apply(double x, double y)
+				{
+					return x / y;
+				}
+			};
+
+	private final String symbol;
+
+	BasicOperationSection38(String symbol) { this.symbol = symbol; }
+
+	@Override
+	public String toString()
 	{
-		System.out.println("------ Run Test -----------");
-		long runStartTime = System.currentTimeMillis();
-
-		BaseTest test = new Chapter2();
-		test.test();
-		test = null;
-
-		test = new Chapter3();
-		test.test();
-
-		test = new Chapter4();
-		test.test();
-
-		test = new Chapter5();
-		test.test();
-
-		test = new Chapter6();
-		test.test();
-
-		test = new Chapter7();
-		test.test();
-
-		long runEndTime = System.currentTimeMillis();
-		System.out.printf("------ run cost time = %dms\n", runEndTime - runStartTime);
-		System.out.println("------ Test End -----------");
+		return symbol;
 	}
 }

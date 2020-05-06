@@ -23,39 +23,20 @@
  *
  */
 
-package com.ymliu.effectivejava.chapter6.section38;
+package com.ymliu.effectivejava.chapter7;
+
+import com.ymliu.effectivejava.BaseTest;
 
 /**
- * 通过接口扩展
+ * 第七章 Lambdas and Streams， lambda表达式和流计算
  *
  * @author LYM
  */
-public enum ExtendedOperation implements Section38Operation
+public class Chapter7 implements BaseTest
 {
-	/**
-	 * 幂
-	 */
-	EXP("^")
-			{
-				@Override
-				public double apply(double x, double y)
-				{
-					return Math.pow(x, y);
-				}
-			},
-	REMAINDER("%")
-			{
-				@Override
-				public double apply(double x, double y)
-				{
-					return x % y;
-				}
-			};
-
-	private final String symbol;
-
-	ExtendedOperation(String symbol) {this.symbol = symbol;}
-
 	@Override
-	public String toString() {return symbol;}
+	public void test()
+	{
+		System.out.println("---- Chapter 6 ----------------");
+	}
 }

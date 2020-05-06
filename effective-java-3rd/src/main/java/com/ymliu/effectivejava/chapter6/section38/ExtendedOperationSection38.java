@@ -26,19 +26,36 @@
 package com.ymliu.effectivejava.chapter6.section38;
 
 /**
- * 使用接口扩展枚举
- * Emulated extensible enum using an interface
+ * 通过接口扩展
  *
  * @author LYM
  */
-public interface Section38Operation
+public enum ExtendedOperationSection38 implements OperationSection38
 {
 	/**
-	 * 应用 二元运算符，将两个参数结果返回。
-	 *
-	 * @param x 二元运算符-参数一
-	 * @param y 二元运算符-参数二
-	 * @return 运算结果
+	 * 幂
 	 */
-	double apply(double x, double y);
+	EXP("^")
+			{
+				@Override
+				public double apply(double x, double y)
+				{
+					return Math.pow(x, y);
+				}
+			},
+	REMAINDER("%")
+			{
+				@Override
+				public double apply(double x, double y)
+				{
+					return x % y;
+				}
+			};
+
+	private final String symbol;
+
+	ExtendedOperationSection38(String symbol) {this.symbol = symbol;}
+
+	@Override
+	public String toString() {return symbol;}
 }

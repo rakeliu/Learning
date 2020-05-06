@@ -37,8 +37,8 @@ import com.ymliu.effectivejava.chapter6.section34.Operation;
 import com.ymliu.effectivejava.chapter6.section34.Planet;
 import com.ymliu.effectivejava.chapter6.section37.Plant;
 import com.ymliu.effectivejava.chapter6.section37.Plant.LifeCycle;
-import com.ymliu.effectivejava.chapter6.section38.ExtendedOperation;
-import com.ymliu.effectivejava.chapter6.section38.Section38Operation;
+import com.ymliu.effectivejava.chapter6.section38.ExtendedOperationSection38;
+import com.ymliu.effectivejava.chapter6.section38.OperationSection38;
 
 import static java.util.Comparator.comparingInt;
 
@@ -80,21 +80,21 @@ public class Chapter6 implements BaseTest
 		System.out.println("-------- Section 38 -----------");
 		x = ThreadLocalRandom.current().nextDouble(10);
 		y = ThreadLocalRandom.current().nextDouble(10);
-		test(ExtendedOperation.class, x, y);
-		test(Arrays.asList(ExtendedOperation.values()), x, y);
+		test(ExtendedOperationSection38.class, x, y);
+		test(Arrays.asList(ExtendedOperationSection38.values()), x, y);
 	}
 
-	private <T extends Enum<T> & Section38Operation> void test(Class<T> opEnumType, double x, double y)
+	private <T extends Enum<T> & OperationSection38> void test(Class<T> opEnumType, double x, double y)
 	{
-		for (Section38Operation op : opEnumType.getEnumConstants())
+		for (OperationSection38 op : opEnumType.getEnumConstants())
 		{
 			System.out.printf("%f %s %f = %f%n", x, op, y, op.apply(x, y));
 		}
 	}
 
-	private void test(Collection<? extends Section38Operation> opSet, double x, double y)
+	private void test(Collection<? extends OperationSection38> opSet, double x, double y)
 	{
-		for (Section38Operation op : opSet)
+		for (OperationSection38 op : opSet)
 		{
 			System.out.printf("%f %s %f = %f%n", x, op, y, op.apply(x, y));
 		}

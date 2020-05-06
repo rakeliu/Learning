@@ -23,58 +23,24 @@
  *
  */
 
-package com.ymliu.effectivejava.chapter6.section38;
+package com.ymliu.effectivejava.chapter7.section43;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
- * 基本枚举继承接口，可通过接口扩展枚举。
+ * 方法引用优于lambda表达式
  *
- * @author LYM
+ * @author
  */
-public enum BasicOperation implements Section38Operation
+public class Section43
 {
-	/**
-	 * 加法，使用匿名函数来继承接口
-	 */
-	PLUS("+")
-			{
-				@Override
-				public double apply(double x, double y)
-				{
-					return x + y;
-				}
-			},
-	MINUS("-")
-			{
-				@Override
-				public double apply(double x, double y)
-				{
-					return x - y;
-				}
-			},
-	TIMES("*")
-			{
-				@Override
-				public double apply(double x, double y)
-				{
-					return x * y;
-				}
-			},
-	DIVIDE("/")
-			{
-				@Override
-				public double apply(double x, double y)
-				{
-					return x / y;
-				}
-			};
-
-	private final String symbol;
-
-	BasicOperation(String symbol) { this.symbol = symbol; }
-
-	@Override
-	public String toString()
+	public void example()
 	{
-		return symbol;
+		Map<String, Integer> map = new HashMap<>(16);
+		String key = "";
+
+		map.merge(key, 1, (count, incr) -> count + incr);
+		map.merge(key, 1, Integer::sum);
 	}
 }

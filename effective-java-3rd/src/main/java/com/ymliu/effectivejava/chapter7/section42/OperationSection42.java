@@ -23,46 +23,40 @@
  *
  */
 
-package com.ymliu.effectivejava;
+package com.ymliu.effectivejava.chapter7.section42;
 
-import com.ymliu.effectivejava.chapter2.Chapter2;
-import com.ymliu.effectivejava.chapter3.Chapter3;
-import com.ymliu.effectivejava.chapter4.Chapter4;
-import com.ymliu.effectivejava.chapter5.Chapter5;
-import com.ymliu.effectivejava.chapter6.Chapter6;
-import com.ymliu.effectivejava.chapter7.Chapter7;
+import java.util.function.DoubleBinaryOperator;
 
 /**
+ * 采用 lambda 表达式重写 Operation
+ *
  * @author LYM
  */
-public class MainTest
+public enum OperationSection42
 {
-	public static void main(String[] args)
+	/**
+	 * 加
+	 */
+	PLUS("+", (x, y) -> x + y),
+	MINUS("-", (x, y) -> x - y),
+	TIMES("*", (x, y) -> x * y),
+	DIVIDE("/", (x, y) -> x / y);
+
+	private final String symbol;
+	/**
+	 * 接口。java.util.function预定义函数接口之一，表示一个函数，接受两个double参数并返回double类型的结果。
+	 */
+	private final DoubleBinaryOperator op;
+
+	OperationSection42(String symbol, DoubleBinaryOperator op)
 	{
-		System.out.println("------ Run Test -----------");
-		long runStartTime = System.currentTimeMillis();
-
-		BaseTest test = new Chapter2();
-		test.test();
-		test = null;
-
-		test = new Chapter3();
-		test.test();
-
-		test = new Chapter4();
-		test.test();
-
-		test = new Chapter5();
-		test.test();
-
-		test = new Chapter6();
-		test.test();
-
-		test = new Chapter7();
-		test.test();
-
-		long runEndTime = System.currentTimeMillis();
-		System.out.printf("------ run cost time = %dms\n", runEndTime - runStartTime);
-		System.out.println("------ Test End -----------");
+		this.symbol = symbol;
+		this.op = op;
 	}
+
+
+	@Override
+	public String toString() { return symbol; }
+
+	public double apply(double x, double y) {return op.applyAsDouble(x, y);}
 }

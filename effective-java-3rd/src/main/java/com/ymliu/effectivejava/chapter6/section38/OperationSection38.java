@@ -23,40 +23,22 @@
  *
  */
 
-package com.ymliu.effectivejava.chapter6.section42;
-
-import java.util.function.DoubleBinaryOperator;
+package com.ymliu.effectivejava.chapter6.section38;
 
 /**
- * 采用 lambda 表达式重写 Operation
+ * 使用接口扩展枚举
+ * Emulated extensible enum using an interface
  *
  * @author LYM
  */
-public enum OperationSection42
+public interface OperationSection38
 {
 	/**
-	 * 加
+	 * 应用 二元运算符，将两个参数结果返回。
+	 *
+	 * @param x 二元运算符-参数一
+	 * @param y 二元运算符-参数二
+	 * @return 运算结果
 	 */
-	PLUS("+", (x, y) -> x + y),
-	MINUS("-", (x, y) -> x - y),
-	TIMES("*", (x, y) -> x * y),
-	DIVIDE("/", (x, y) -> x / y);
-
-	private final String symbol;
-	/**
-	 * 接口。java.util.function预定义函数接口之一，表示一个函数，接受两个double参数并返回double类型的结果。
-	 */
-	private final DoubleBinaryOperator op;
-
-	OperationSection42(String symbol, DoubleBinaryOperator op)
-	{
-		this.symbol = symbol;
-		this.op = op;
-	}
-
-
-	@Override
-	public String toString() { return symbol; }
-
-	public double apply(double x, double y) {return op.applyAsDouble(x, y);}
+	double apply(double x, double y);
 }
