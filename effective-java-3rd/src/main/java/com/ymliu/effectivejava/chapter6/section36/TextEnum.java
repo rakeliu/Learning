@@ -35,17 +35,6 @@ import java.util.Set;
  */
 public class TextEnum
 {
-	public enum Style
-	{
-		/**
-		 * 定义为枚举
-		 */
-		BOLD,
-		ITALIC,
-		UNDERLINE,
-		STRIKETHROUGH
-	}
-
 	private final Set<Style> styles = EnumSet.noneOf(Style.class);
 
 	/**
@@ -56,5 +45,16 @@ public class TextEnum
 	public void applyStyles(Set<Style> styles)
 	{
 		this.styles.addAll(styles);
+	}
+
+	public enum Style
+	{
+		/**
+		 * 定义为枚举
+		 */
+		BOLD,
+		ITALIC,
+		UNDERLINE,
+		STRIKETHROUGH
 	}
 }

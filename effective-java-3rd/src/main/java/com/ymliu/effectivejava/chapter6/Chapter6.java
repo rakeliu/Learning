@@ -27,6 +27,9 @@ package com.ymliu.effectivejava.chapter6;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 import com.ymliu.effectivejava.BaseTest;
@@ -36,6 +39,8 @@ import com.ymliu.effectivejava.chapter6.section37.Plant;
 import com.ymliu.effectivejava.chapter6.section37.Plant.LifeCycle;
 import com.ymliu.effectivejava.chapter6.section38.ExtendedOperation;
 import com.ymliu.effectivejava.chapter6.section38.Section38Operation;
+
+import static java.util.Comparator.comparingInt;
 
 /**
  * Enums and Annotations : 枚举和注解
@@ -93,5 +98,23 @@ public class Chapter6 implements BaseTest
 		{
 			System.out.printf("%f %s %f = %f%n", x, op, y, op.apply(x, y));
 		}
+	}
+
+	private void testSection42(List<String> words)
+	{
+		Collections.sort(words, new Comparator<String>()
+		{
+			@Override
+			public int compare(String s1, String s2)
+			{
+				return Integer.compare(s1.length(), s2.length());
+			}
+		});
+
+		Collections.sort(words, (s1, s2) -> Integer.compare(s1.length(), s2.length()));
+
+		Collections.sort(words, comparingInt(String::length));
+
+		words.sort(comparingInt(String::length));
 	}
 }

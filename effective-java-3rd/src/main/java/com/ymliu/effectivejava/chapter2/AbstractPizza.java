@@ -31,6 +31,19 @@ import java.util.Set;
 
 public abstract class AbstractPizza
 {
+	final Set<Topping> toppings;
+
+	AbstractPizza(Builder<?> builder)
+	{
+		this.toppings = builder.toppings.clone();
+	}
+
+	@Override
+	public String toString()
+	{
+		return "Pizza{" + "toppings=" + toppings + '}';
+	}
+
 	/**
 	 * 类型
 	 */
@@ -42,8 +55,6 @@ public abstract class AbstractPizza
 		PEPPER,
 		SAUSAGE
 	}
-
-	final Set<Topping> toppings;
 
 	abstract static class Builder<T extends Builder<T>>
 	{
@@ -59,16 +70,5 @@ public abstract class AbstractPizza
 
 		// Subclasses must override this method to return "this"
 		protected abstract T self();
-	}
-
-	AbstractPizza(Builder<?> builder)
-	{
-		this.toppings = builder.toppings.clone();
-	}
-
-	@Override
-	public String toString()
-	{
-		return "Pizza{" + "toppings=" + toppings + '}';
 	}
 }

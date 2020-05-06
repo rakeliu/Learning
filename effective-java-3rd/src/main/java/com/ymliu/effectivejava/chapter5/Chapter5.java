@@ -54,15 +54,16 @@ public class Chapter5 implements BaseTest
 
 		System.out.println("-------- Section 33 -----------");
 		Favorites favorites = new Favorites();
-		List<String> listString = List.of("abc","123");
+		List<String> listString = List.of("abc", "123");
 		// favorites.putFavorite(listString.getClass(), listString); // Error code
 
 	}
 
 	/**
 	 * Section 31 - PECS (Producer-Extends, Consumer-Super)
+	 *
 	 * @param list producer, so "List<? extends T>"
-	 * @param <T> generic
+	 * @param <T>  generic
 	 * @return consumer, so "Comparable<? super T>"
 	 */
 	public <T extends Comparable<? super T>> T max(List<? extends T> list)

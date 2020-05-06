@@ -27,6 +27,7 @@ package com.ymliu.effectivejava.chapter6.section34;
 
 /**
  * Enum typ with data and behavior
+ *
  * @author LYM
  */
 public enum Planet
@@ -44,6 +45,10 @@ public enum Planet
 	NEPTUNE(1.024e+26, 2.477e7);
 
 	/**
+	 * Universal gravitational constant in m^3 / kg 2^2
+	 */
+	private static final double G = 6.67300E-11;
+	/**
 	 * In kilograms
 	 */
 	private final double mass;
@@ -55,10 +60,6 @@ public enum Planet
 	 * In m / s^2
 	 */
 	private final double surfaceGravity;
-	/**
-	 * Universal gravitational constant in m^3 / kg 2^2
-	 */
-	private static final double G = 6.67300E-11;
 
 	Planet(double mass, double radius)
 	{

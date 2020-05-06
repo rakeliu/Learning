@@ -30,8 +30,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import com.sun.source.util.Plugin;
-
 /**
  * Enum type that switches on its own value - questionable
  *
@@ -66,19 +64,13 @@ public enum Operation
 				public double apply(double x, double y) { return x / y; }
 			};
 
-	public abstract double apply(double x, double y);
-
-	private final String symbol;
-
-	Operation(String symbol) {this.symbol = symbol;}
-
-	@Override
-	public String toString() {return symbol;}
-
 	/**
 	 * Implementing a fromString method on an enum type
 	 */
 	private static final Map<String, Operation> STRING_TO_ENUM = Stream.of(values()).collect(Collectors.toMap(Object::toString, e -> e));
+	private final String symbol;
+
+	Operation(String symbol) {this.symbol = symbol;}
 
 	/**
 	 * REturns Operation for string ,if any
@@ -110,4 +102,9 @@ public enum Operation
 				throw new AssertionError("Unknown op: " + op);
 		}
 	}
+
+	public abstract double apply(double x, double y);
+
+	@Override
+	public String toString() {return symbol;}
 }

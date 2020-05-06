@@ -41,29 +41,12 @@ import static java.util.stream.Collectors.toSet;
  */
 public class Plant
 {
-	public enum LifeCycle
-	{
-		/**
-		 * 一年生，多年生……
-		 */
-		ANNUAL,
-		PERENNIAL,
-		BIENNIAL
-	}
-
 	final String name;
 	final LifeCycle lifeCycle;
-
 	public Plant(String name, LifeCycle lifeCycle)
 	{
 		this.name = name;
 		this.lifeCycle = lifeCycle;
-	}
-
-	@Override
-	public String toString()
-	{
-		return name;
 	}
 
 	/**
@@ -121,6 +104,22 @@ public class Plant
 		System.out.println(Arrays.stream(garden).collect(groupingBy(p -> p.lifeCycle)));
 
 		System.out.println("groupingBy(lambda, lambda)");
-		System.out.println(Arrays.stream(garden).collect(groupingBy(p->p.lifeCycle, ()->new EnumMap<>(LifeCycle.class), toSet())));
+		System.out.println(Arrays.stream(garden).collect(groupingBy(p -> p.lifeCycle, () -> new EnumMap<>(LifeCycle.class), toSet())));
+	}
+
+	@Override
+	public String toString()
+	{
+		return name;
+	}
+
+	public enum LifeCycle
+	{
+		/**
+		 * 一年生，多年生……
+		 */
+		ANNUAL,
+		PERENNIAL,
+		BIENNIAL
 	}
 }

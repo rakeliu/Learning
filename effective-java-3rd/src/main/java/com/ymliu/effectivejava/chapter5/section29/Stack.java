@@ -37,9 +37,9 @@ import java.util.EmptyStackException;
  */
 public class Stack<E>
 {
+	private static final int DEFAULT_INITIAL_CAPACITY = 1 << 4;
 	private E[] elements;
 	private int size = 0;
-	private static final int DEFAULT_INITIAL_CAPACITY = 1 << 4;
 
 	public Stack()
 	{
@@ -89,7 +89,8 @@ public class Stack<E>
 	/**
 	 * Wildcard type for parameter that serves as an E consumer
 	 * for section 31
-	 * @param dst  wildcar generic "? super E"
+	 *
+	 * @param dst wildcar generic "? super E"
 	 */
 	public void popAll(Collection<? super E> dst)
 	{

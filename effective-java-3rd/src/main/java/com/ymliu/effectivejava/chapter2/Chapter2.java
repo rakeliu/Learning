@@ -26,8 +26,8 @@
 package com.ymliu.effectivejava.chapter2;
 
 import com.ymliu.effectivejava.BaseTest;
-import com.ymliu.effectivejava.chapter2.NyAbstractPizza.Size;
 import com.ymliu.effectivejava.chapter2.AbstractPizza.Topping;
+import com.ymliu.effectivejava.chapter2.NyAbstractPizza.Size;
 import com.ymliu.effectivejava.chapter2.section06.RomanNumerals;
 import com.ymliu.effectivejava.chapter2.section08.Room;
 

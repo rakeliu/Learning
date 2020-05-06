@@ -33,6 +33,22 @@ import java.lang.ref.Cleaner;
 public class Room implements AutoCloseable
 {
 	private static final Cleaner cleaner = Cleaner.create();
+	// The state of this room, shared with our cleanable
+	private final State state;
+	// Our cleanable. Cleans the room when it's eligible for gc
+	private final Cleaner.Cleanable cleanable;
+
+	public Room(int numJunkPiles)
+	{
+		this.state = new State(numJunkPiles);
+		this.cleanable = cleaner.register(this, state);
+	}
+
+	@Override
+	public void close() throws Exception
+	{
+		this.cleanable.clean();
+	}
 
 	/**
 	 * Resource that requires cleaning. Must not refer to Room!
@@ -53,23 +69,5 @@ public class Room implements AutoCloseable
 			System.out.println("Cleaning room");
 			numJunkPiles = 0;
 		}
-	}
-
-	// The state of this room, shared with our cleanable
-	private final State state;
-
-	// Our cleanable. Cleans the room when it's eligible for gc
-	private final Cleaner.Cleanable cleanable;
-
-	public Room(int numJunkPiles)
-	{
-		this.state = new State(numJunkPiles);
-		this.cleanable = cleaner.register(this, state);
-	}
-
-	@Override
-	public void close() throws Exception
-	{
-		this.cleanable.clean();
 	}
 }

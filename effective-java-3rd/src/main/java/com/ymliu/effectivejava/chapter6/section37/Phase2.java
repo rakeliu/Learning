@@ -67,6 +67,7 @@ public enum Phase2
 		IONIZE(GAS, PLASMA),
 		DEIONIZE(PLASMA, GAS);
 
+		private static final Map<Phase2, Map<Phase2, Transition>> m = Stream.of(values()).collect(groupingBy(t -> t.from, () -> new EnumMap<>(Phase2.class), toMap(t -> t.to, t -> t, (x, y) -> y, () -> new EnumMap<>(Phase2.class))));
 		private final Phase2 from;
 		private final Phase2 to;
 
@@ -75,8 +76,6 @@ public enum Phase2
 			this.from = from;
 			this.to = to;
 		}
-
-		private static final Map<Phase2, Map<Phase2, Transition>> m = Stream.of(values()).collect(groupingBy(t -> t.from, () -> new EnumMap<>(Phase2.class), toMap(t -> t.to, t -> t, (x, y) -> y, () -> new EnumMap<>(Phase2.class))));
 
 		public static Transition from(Phase2 from, Phase2 to)
 		{

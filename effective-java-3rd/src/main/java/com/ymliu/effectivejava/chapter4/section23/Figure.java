@@ -33,29 +33,15 @@ package com.ymliu.effectivejava.chapter4.section23;
  */
 public class Figure
 {
-	enum Shape
-	{
-		/**
-		 * 多边形
-		 */
-		RECTANGLE,
-		/**
-		 * 圆形
-		 */
-		CIRCLE
-	}
-
 	/**
 	 * Tag field - the shapre of this figure
 	 */
 	final Shape shape;
-
 	/**
 	 * These fields are used only if shape is RECTANGLE
 	 */
 	double length;
 	double width;
-
 	/**
 	 * This field is used only if shape is CIRCLE
 	 */
@@ -85,11 +71,23 @@ public class Figure
 		switch (shape)
 		{
 			case RECTANGLE:
-				return length*width;
+				return length * width;
 			case CIRCLE:
-				return Math.PI*(radius*radius);
+				return Math.PI * (radius * radius);
 			default:
 				throw new AssertionError(shape);
 		}
+	}
+
+	enum Shape
+	{
+		/**
+		 * 多边形
+		 */
+		RECTANGLE,
+		/**
+		 * 圆形
+		 */
+		CIRCLE
 	}
 }

@@ -37,8 +37,8 @@ import java.util.Objects;
  */
 public class PhoneNumber implements Comparable
 {
-	private final short areaCode, prefix, lineNum;
 	private static final Comparator<PhoneNumber> COMPARATOR = Comparator.comparingInt((PhoneNumber pn) -> pn.areaCode).thenComparingInt(pn -> pn.prefix).thenComparingInt(pn -> pn.lineNum);
+	private final short areaCode, prefix, lineNum;
 
 	public PhoneNumber(int areaCode, int prefix, int lineNum)
 	{

@@ -44,14 +44,14 @@ public enum PayrollDay2
 	SATURDAY(PayType.WEEKEND),
 	SUNDAY(PayType.WEEKEND);
 
+	private final PayType payType;
+
 	/**
 	 * Default - 默认工作日
 	 */
 	PayrollDay2() {this(PayType.WEEKDAY);}
 
 	PayrollDay2(PayType payType) {this.payType = payType;}
-
-	private final PayType payType;
 
 	int pay(int minutesWorked, int payRate)
 	{
@@ -86,6 +86,8 @@ public enum PayrollDay2
 					}
 				};
 
+		private static final int MINS_PER_SHIFT = 8 * 60;
+
 		/**
 		 * 加班费计算
 		 *
@@ -94,8 +96,6 @@ public enum PayrollDay2
 		 * @return 加班工资
 		 */
 		abstract int overtimePay(int mins, int payRate);
-
-		private static final int MINS_PER_SHIFT = 8 * 60;
 
 		int pay(int minsWorked, int payRate)
 		{

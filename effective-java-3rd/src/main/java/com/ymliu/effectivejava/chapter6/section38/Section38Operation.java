@@ -28,12 +28,14 @@ package com.ymliu.effectivejava.chapter6.section38;
 /**
  * 使用接口扩展枚举
  * Emulated extensible enum using an interface
+ *
  * @author LYM
  */
 public interface Section38Operation
 {
 	/**
 	 * 应用 二元运算符，将两个参数结果返回。
+	 *
 	 * @param x 二元运算符-参数一
 	 * @param y 二元运算符-参数二
 	 * @return 运算结果

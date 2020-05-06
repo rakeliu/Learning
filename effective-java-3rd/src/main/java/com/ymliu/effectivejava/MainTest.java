@@ -31,6 +31,9 @@ import com.ymliu.effectivejava.chapter4.Chapter4;
 import com.ymliu.effectivejava.chapter5.Chapter5;
 import com.ymliu.effectivejava.chapter6.Chapter6;
 
+/**
+ * @author LYM
+ */
 public class MainTest
 {
 	public static void main(String[] args)

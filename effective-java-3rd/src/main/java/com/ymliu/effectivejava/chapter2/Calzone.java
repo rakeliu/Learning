@@ -29,6 +29,18 @@ public class Calzone extends AbstractPizza
 {
 	private final boolean sauceInside;
 
+	Calzone(Builder builder)
+	{
+		super(builder);
+		this.sauceInside = builder.sauceInside;
+	}
+
+	@Override
+	public String toString()
+	{
+		return "Calzone{" + super.toString() + ", sauceInside=" + sauceInside + '}';
+	}
+
 	public static class Builder extends AbstractPizza.Builder<Builder>
 	{
 		private boolean sauceInside = false;    // Default
@@ -50,17 +62,5 @@ public class Calzone extends AbstractPizza
 		{
 			return this;
 		}
-	}
-
-	Calzone(Builder builder)
-	{
-		super(builder);
-		this.sauceInside = builder.sauceInside;
-	}
-
-	@Override
-	public String toString()
-	{
-		return "Calzone{" + super.toString() + ", sauceInside=" + sauceInside + '}';
 	}
 }

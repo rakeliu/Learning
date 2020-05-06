@@ -29,6 +29,20 @@ import java.util.Objects;
 
 public class NyAbstractPizza extends AbstractPizza
 {
+	private final Size size;
+
+	NyAbstractPizza(Builder builder)
+	{
+		super(builder);
+		this.size = builder.size;
+	}
+
+	@Override
+	public String toString()
+	{
+		return "NyPizza{" + super.toppings + ", size=" + size + '}';
+	}
+
 	/**
 	 * 尺寸
 	 */
@@ -38,8 +52,6 @@ public class NyAbstractPizza extends AbstractPizza
 		MEDIUM,
 		LARGE
 	}
-
-	private final Size size;
 
 	public static class Builder extends AbstractPizza.Builder<Builder>
 	{
@@ -61,17 +73,5 @@ public class NyAbstractPizza extends AbstractPizza
 		{
 			return this;
 		}
-	}
-
-	NyAbstractPizza(Builder builder)
-	{
-		super(builder);
-		this.size = builder.size;
-	}
-
-	@Override
-	public String toString()
-	{
-		return "NyPizza{" + super.toppings + ", size=" + size + '}';
 	}
 }

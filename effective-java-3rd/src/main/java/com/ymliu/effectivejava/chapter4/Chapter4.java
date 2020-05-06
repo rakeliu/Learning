@@ -25,10 +25,8 @@
 
 package com.ymliu.effectivejava.chapter4;
 
-import java.time.Instant;
 import java.util.List;
 import java.util.Set;
-import java.util.TreeSet;
 
 import com.ymliu.effectivejava.BaseTest;
 import com.ymliu.effectivejava.chapter4.section18.InstrumentedHashSet;
@@ -37,6 +35,7 @@ import com.ymliu.effectivejava.chapter4.section19.Sub;
 
 /**
  * Chapter4. Classes and Interfaces
+ *
  * @author LYM
  */
 public class Chapter4 implements BaseTest

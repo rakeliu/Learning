@@ -37,6 +37,35 @@ public class NutritionFacts
 	private final int sodium;       // (mg/serving) optional
 	private final int carbohydrate; // (g/serving) optional
 
+	private NutritionFacts(Builder builder)
+	{
+		this.servingSize = builder.servingSize;
+		this.servings = builder.servings;
+		this.calories = builder.calories;
+		this.fat = builder.fat;
+		this.sodium = builder.sodium;
+		this.carbohydrate = builder.carbohydrate;
+	}
+
+	@Override
+	public String toString()
+	{
+		return "NutritionFacts{" +
+		       "servingSize=" +
+		       servingSize +
+		       ", servings=" +
+		       servings +
+		       ", calories=" +
+		       calories +
+		       ", fat=" +
+		       fat +
+		       ", sodium=" +
+		       sodium +
+		       ", carbohydrate=" +
+		       carbohydrate +
+		       '}';
+	}
+
 	public static class Builder
 	{
 		// Required parameters
@@ -83,21 +112,5 @@ public class NutritionFacts
 		{
 			return new NutritionFacts(this);
 		}
-	}
-
-	private NutritionFacts(Builder builder)
-	{
-		this.servingSize = builder.servingSize;
-		this.servings = builder.servings;
-		this.calories = builder.calories;
-		this.fat = builder.fat;
-		this.sodium = builder.sodium;
-		this.carbohydrate = builder.carbohydrate;
-	}
-
-	@Override
-	public String toString()
-	{
-		return "NutritionFacts{" + "servingSize=" + servingSize + ", servings=" + servings + ", calories=" + calories + ", fat=" + fat + ", sodium=" + sodium + ", carbohydrate=" + carbohydrate + '}';
 	}
 }

@@ -23,64 +23,40 @@
  *
  */
 
-package com.ymliu.effectivejava.chapter2.section07;
+package com.ymliu.effectivejava.chapter6.section42;
 
-import java.util.Arrays;
-import java.util.EmptyStackException;
+import java.util.function.DoubleBinaryOperator;
 
-public class Stack
+/**
+ * 采用 lambda 表达式重写 Operation
+ *
+ * @author LYM
+ */
+public enum OperationSection42
 {
-	private static final int DEFAULT_INITIAL_CAPACITY = 16;
-	private Object[] elements;
-	private int size = 0;
+	/**
+	 * 加
+	 */
+	PLUS("+", (x, y) -> x + y),
+	MINUS("-", (x, y) -> x - y),
+	TIMES("*", (x, y) -> x * y),
+	DIVIDE("/", (x, y) -> x / y);
 
-	public Stack()
+	private final String symbol;
+	/**
+	 * 接口。java.util.function预定义函数接口之一，表示一个函数，接受两个double参数并返回double类型的结果。
+	 */
+	private final DoubleBinaryOperator op;
+
+	OperationSection42(String symbol, DoubleBinaryOperator op)
 	{
-		elements = new Object[DEFAULT_INITIAL_CAPACITY];
+		this.symbol = symbol;
+		this.op = op;
 	}
 
-	public void push(Object e)
-	{
-		ensureCapacity();
-		elements[size++] = e;
-	}
-
-	public Object pop1()
-	{
-		if (size == 0) {throw new EmptyStackException();}
-		return elements[--size];
-		// elements[size] 仍指向该对象，引用仍存在，除非重新push到该元素。
-	}
-
-	public Object pop2()
-	{
-		if (size == 0) {throw new EmptyStackException();}
-		Object result = elements[--size];
-		// 释放引用
-		elements[size] = null;
-		return result;
-	}
-
-	private void ensureCapacity()
-	{
-		if (elements.length == size)
-		{
-			elements = Arrays.copyOf(elements, 2 * size + 1);
-		}
-	}
 
 	@Override
-	public Stack clone()
-	{
-		try
-		{
-			Stack result = (Stack) super.clone();
-			result.elements = elements.clone();
-			return result;
-		}
-		catch (CloneNotSupportedException e)
-		{
-			throw new AssertionError();
-		}
-	}
+	public String toString() { return symbol; }
+
+	public double apply(double x, double y) {return op.applyAsDouble(x, y);}
 }
