@@ -126,8 +126,7 @@ public class Anagrams
 					// 过滤出需要的流
 					.filter(group -> group.size() >= minGroupSize)
 					// 少一步stream.map转换，直接格式化打印每个元素
-					.forEach(g -> System.out.println(g.size() + " : " + g));
-			;
+					.forEach(group -> System.out.println(group.size() + " : " + group));
 		}
 	}
 

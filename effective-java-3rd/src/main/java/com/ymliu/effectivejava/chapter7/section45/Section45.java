@@ -23,23 +23,55 @@
  *
  */
 
-package com.ymliu.effectivejava.chapter7;
+package com.ymliu.effectivejava.chapter7.section45;
 
-import com.ymliu.effectivejava.BaseTest;
-import com.ymliu.effectivejava.chapter7.section45.Section45;
+import java.math.BigInteger;
+import java.util.SplittableRandom;
+import java.util.stream.LongStream;
+import java.util.stream.Stream;
+
+import static java.math.BigInteger.ONE;
+import static java.math.BigInteger.TWO;
 
 /**
- * 第七章 Lambdas and Streams， lambda表达式和流计算
+ * 流并行计算
  *
  * @author LYM
  */
-public class Chapter7 implements BaseTest
+public class Section45
 {
-	@Override
-	public void test()
+	/**
+	 * 美森素数
+	 */
+	public void mersen()
 	{
-		System.out.println("---- Chapter 7 ----------------");
-		Section45 section = new Section45();
-		section.mersen();
+		primes().map(p -> TWO.pow(p.intValueExact()).subtract(ONE))
+				// 看不懂
+				.filter(mersenne -> mersenne.isProbablePrime(50))
+				// 限制20个
+				.limit(20)
+				//
+				.forEach(System.out::println);
+	}
+
+	private Stream<BigInteger> primes()
+	{
+		return Stream.iterate(TWO, BigInteger::nextProbablePrime);
+	}
+
+	/**
+	 * 并行有效性流管道实例，计算n，素数小于或等于n
+	 */
+	public long pi(long n)
+	{
+		return LongStream.rangeClosed(2, n)
+				// 转为并行计算
+				.parallel()
+				// 转为BigInteger
+				.mapToObj(BigInteger::valueOf)
+				// 过滤
+				.filter(bi -> bi.isProbablePrime(50))
+				// 统计个数
+				.count();
 	}
 }
