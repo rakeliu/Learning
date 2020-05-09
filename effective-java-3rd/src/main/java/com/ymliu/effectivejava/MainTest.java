@@ -26,6 +26,7 @@
 package com.ymliu.effectivejava;
 
 import com.ymliu.effectivejava.chapter11.Chapter11;
+import com.ymliu.effectivejava.chapter12.Chapter12;
 import com.ymliu.effectivejava.chapter2.Chapter2;
 import com.ymliu.effectivejava.chapter3.Chapter3;
 import com.ymliu.effectivejava.chapter4.Chapter4;
@@ -67,6 +68,9 @@ public class MainTest
 		test.test();
 
 		test = new Chapter11();
+		test.test();
+
+		test = new Chapter12();
 		test.test();
 
 		long runEndTime = System.currentTimeMillis();
