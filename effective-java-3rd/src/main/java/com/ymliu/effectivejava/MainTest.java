@@ -25,12 +25,14 @@
 
 package com.ymliu.effectivejava;
 
+import com.ymliu.effectivejava.chapter11.Chapter11;
 import com.ymliu.effectivejava.chapter2.Chapter2;
 import com.ymliu.effectivejava.chapter3.Chapter3;
 import com.ymliu.effectivejava.chapter4.Chapter4;
 import com.ymliu.effectivejava.chapter5.Chapter5;
 import com.ymliu.effectivejava.chapter6.Chapter6;
 import com.ymliu.effectivejava.chapter7.Chapter7;
+import com.ymliu.effectivejava.chapter8.Chapter8;
 
 /**
  * @author LYM
@@ -59,6 +61,12 @@ public class MainTest
 		test.test();
 
 		test = new Chapter7();
+		test.test();
+
+		test = new Chapter8();
+		test.test();
+
+		test = new Chapter11();
 		test.test();
 
 		long runEndTime = System.currentTimeMillis();

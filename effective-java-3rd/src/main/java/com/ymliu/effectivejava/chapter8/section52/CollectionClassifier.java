@@ -23,23 +23,34 @@
  *
  */
 
-package com.ymliu.effectivejava.chapter7;
+package com.ymliu.effectivejava.chapter8.section52;
 
-import com.ymliu.effectivejava.BaseTest;
-import com.ymliu.effectivejava.chapter7.section45.Section45;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
- * 第七章 Lambdas and Streams， lambda表达式和流计算
+ * 明智审慎地使用重载
  *
  * @author LYM
  */
-public class Chapter7 implements BaseTest
+public class CollectionClassifier
 {
-	@Override
-	public void test()
+	public String classifier(Set<?> set)
 	{
-		System.out.println("---- Chapter 7 ----------------");
-		Section45 section = new Section45();
-		//section.mersen();
+		return "Set";
+	}
+
+	public String classifier(List<?> list)
+	{
+		return "List";
+	}
+
+	public String classifier(Collection<?> collection)
+	{
+		return "Unknown Collection";
 	}
 }

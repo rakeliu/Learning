@@ -23,23 +23,60 @@
  *
  */
 
-package com.ymliu.effectivejava.chapter7;
+package com.ymliu.effectivejava.chapter8.section55;
 
-import com.ymliu.effectivejava.BaseTest;
-import com.ymliu.effectivejava.chapter7.section45.Section45;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
- * 第七章 Lambdas and Streams， lambda表达式和流计算
+ * 明智审慎地返回Optional
  *
  * @author LYM
  */
-public class Chapter7 implements BaseTest
+public class Section55
 {
-	@Override
-	public void test()
+	/**
+	 * Returns maximum value in collection - throws exception if empty
+	 */
+	public static <E extends Comparable<E>> E maxException(Collection<E> c)
 	{
-		System.out.println("---- Chapter 7 ----------------");
-		Section45 section = new Section45();
-		//section.mersen();
+		if (c.isEmpty()) { throw new IllegalArgumentException("Empty collection"); }
+
+		E result = null;
+		for (E e : c)
+		{
+			if (result == null || e.compareTo(result) > 0)
+			{
+				result = Objects.requireNonNull(e);
+			}
+		}
+
+		return result;
+	}
+
+	/**
+	 * Returns maximum value in collection as an Optional<E>
+	 */
+	public static <E extends Comparable<E>> Optional<E> maxOption(Collection<E> c)
+	{
+		if (c.isEmpty()) {return Optional.empty();}
+
+		E result = null;
+		for (E e : c)
+		{
+			if (result == null || e.compareTo(result) > 0)
+			{
+				result = Objects.requireNonNull(e);
+			}
+		}
+
+		return Optional.of(result);
+	}
+
+	public static <E extends Comparable<E>> Optional<E> maxStream(Collection<E> c)
+	{
+		return c.stream().max(Comparator.naturalOrder());
 	}
 }

@@ -23,23 +23,37 @@
  *
  */
 
-package com.ymliu.effectivejava.chapter7;
+package com.ymliu.effectivejava.chapter11.section79;
 
-import com.ymliu.effectivejava.BaseTest;
-import com.ymliu.effectivejava.chapter7.section45.Section45;
+import java.util.Set;
 
 /**
- * 第七章 Lambdas and Streams， lambda表达式和流计算
+ * 因为有两种不同的用法，抽象接口。
  *
+ * @param <E> 泛型
  * @author LYM
  */
-public class Chapter7 implements BaseTest
+public interface BaseObservableSet<E> extends Set<E>
 {
-	@Override
-	public void test()
-	{
-		System.out.println("---- Chapter 7 ----------------");
-		Section45 section = new Section45();
-		//section.mersen();
-	}
+	/**
+	 * 添加一个观察者
+	 *
+	 * @param observer 观察者
+	 */
+	void addObserver(SetObserver<E> observer);
+
+	/**
+	 * 移除一个观察者
+	 *
+	 * @param observer 观察者
+	 * @return 移除成功标志
+	 */
+	boolean removeObserver(SetObserver<E> observer);
+
+	/**
+	 * 提示观察者添加元素
+	 *
+	 * @param element 元素
+	 */
+	void notifyElementAdded(E element);
 }

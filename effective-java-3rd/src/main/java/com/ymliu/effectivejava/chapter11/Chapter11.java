@@ -23,23 +23,24 @@
  *
  */
 
-package com.ymliu.effectivejava.chapter7;
+package com.ymliu.effectivejava.chapter11;
 
 import com.ymliu.effectivejava.BaseTest;
-import com.ymliu.effectivejava.chapter7.section45.Section45;
+import com.ymliu.effectivejava.chapter11.section79.ObservableSet1;
+import com.ymliu.effectivejava.chapter11.section79.ObservableSet2;
 
 /**
- * 第七章 Lambdas and Streams， lambda表达式和流计算
+ * 并发
  *
  * @author LYM
  */
-public class Chapter7 implements BaseTest
+public class Chapter11 implements BaseTest
 {
 	@Override
 	public void test()
 	{
-		System.out.println("---- Chapter 7 ----------------");
-		Section45 section = new Section45();
-		//section.mersen();
+		System.out.println("---- Chapter 11 ---------------");
+		ObservableSet1.test();
+		ObservableSet2.test();
 	}
 }

@@ -23,23 +23,25 @@
  *
  */
 
-package com.ymliu.effectivejava.chapter7;
+package com.ymliu.effectivejava;
 
-import com.ymliu.effectivejava.BaseTest;
-import com.ymliu.effectivejava.chapter7.section45.Section45;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
- * 第七章 Lambdas and Streams， lambda表达式和流计算
+ * 注解 - 定义方法为测试方法
  *
  * @author LYM
  */
-public class Chapter7 implements BaseTest
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface TestMethod
 {
-	@Override
-	public void test()
-	{
-		System.out.println("---- Chapter 7 ----------------");
-		Section45 section = new Section45();
-		//section.mersen();
-	}
+	String key() default "undefined";
+
+	int index();
+
+	Class<?>[] argumentClasses() default {};
 }

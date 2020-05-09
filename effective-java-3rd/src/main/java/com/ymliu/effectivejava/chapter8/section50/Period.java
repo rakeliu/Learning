@@ -23,23 +23,55 @@
  *
  */
 
-package com.ymliu.effectivejava.chapter7;
+package com.ymliu.effectivejava.chapter8.section50;
 
-import com.ymliu.effectivejava.BaseTest;
-import com.ymliu.effectivejava.chapter7.section45.Section45;
+import java.util.Date;
 
 /**
- * 第七章 Lambdas and Streams， lambda表达式和流计算
+ * 防御性拷贝
  *
  * @author LYM
  */
-public class Chapter7 implements BaseTest
+public class Period
 {
-	@Override
-	public void test()
+	private final Date start;
+	private final Date end;
+
+	/**
+	 * @param start the beginning of the period
+	 * @param end   then end of the period; must not precede start
+	 * @throws IllegalArgumentException if start is after end
+	 * @throws NullPointerException     if start or end is null
+	 */
+	public Period(Date start, Date end)
 	{
-		System.out.println("---- Chapter 7 ----------------");
-		Section45 section = new Section45();
-		//section.mersen();
+		if (start.compareTo(end) > 0)
+		{
+			throw new IllegalArgumentException(start + " after " + end);
+		}
+
+		// 防御性拷贝
+		this.start = new Date(start.getTime());
+		this.end = new Date(end.getTime());
+	}
+
+	/**
+	 * 防御性拷贝
+	 *
+	 * @return 一个新对象
+	 */
+	public Date getStart()
+	{
+		return new Date(start.getTime());
+	}
+
+	/**
+	 * 防御性拷贝
+	 *
+	 * @return 一个新对象
+	 */
+	public Date getEnd()
+	{
+		return new Date(start.getTime());
 	}
 }

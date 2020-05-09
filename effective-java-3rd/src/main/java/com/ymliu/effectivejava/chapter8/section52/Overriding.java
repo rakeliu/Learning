@@ -23,23 +23,47 @@
  *
  */
 
-package com.ymliu.effectivejava.chapter7;
+package com.ymliu.effectivejava.chapter8.section52;
 
-import com.ymliu.effectivejava.BaseTest;
-import com.ymliu.effectivejava.chapter7.section45.Section45;
+import java.util.List;
 
 /**
- * 第七章 Lambdas and Streams， lambda表达式和流计算
+ * 重载
  *
  * @author LYM
  */
-public class Chapter7 implements BaseTest
+public class Overriding
 {
-	@Override
-	public void test()
+	static class Wine
 	{
-		System.out.println("---- Chapter 7 ----------------");
-		Section45 section = new Section45();
-		//section.mersen();
+		String name() {return "wine";}
+	}
+
+	static class SparklingWine extends Wine
+	{
+		@Override
+		String name() {return "sparkling wine";}
+	}
+
+	static class Champagne extends SparklingWine
+	{
+		@Override
+		String name() { return "champagne"; }
+	}
+
+	public void example()
+	{
+		List<Wine> wineList = List.of(
+				// wine
+				new Wine(),
+				// sparkling
+				new SparklingWine(),
+				// champagne
+				new Champagne());
+
+		for (Wine wine : wineList)
+		{
+			System.out.println(wine.name());
+		}
 	}
 }
