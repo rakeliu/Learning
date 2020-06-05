@@ -24,8 +24,6 @@
 
 package com.ymliu.springcloud.config.client;
 
-import javax.swing.*;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
@@ -45,15 +43,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class ConfigClientApplication
 {
 	private static final Logger logger = LogManager.getLogger(ConfigClientApplication.class);
+	@Value("${foo}")
+	String foo;
 
 	public static void main(String[] args)
 	{
 		logger.info("正在启动配置服务-客户端...");
 		SpringApplication.run(ConfigClientApplication.class);
 	}
-
-	@Value("${foo}")
-	String foo;
 
 	@RequestMapping(value = "/hi")
 	public String hi()
