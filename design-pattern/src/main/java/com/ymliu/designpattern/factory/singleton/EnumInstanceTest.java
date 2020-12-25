@@ -22,20 +22,26 @@
  * SOFTWARE.
  */
 
-package com.ymliu.designpattern.factory.simplefactory;
+package com.ymliu.designpattern.factory.singleton;
 
 /**
- * 具体生产类 PYTHON
+ * 枚举式单例测试
+ *
  * @author LYM
  */
-public class PythonVideo extends BaseVideo
+public class EnumInstanceTest
 {
-	/**
-	 * 生产PYTHON。
-	 */
-	@Override
-	public void produce()
+	public static void main(String[] args)
 	{
-		System.out.println("生产 PythonVideo");
+		// 正常方法创建
+		EnumInstance oldInstance = EnumInstance.getInstance();
+		oldInstance.setData("EnumInstance data");
+		Object newData1 = oldInstance.getData();
+		Object newData2 = oldInstance.getData();
+
+		// 比较其地址值
+		System.out.println("newData1: " + newData1);
+		System.out.println("newData2: " + newData2);
+		System.out.println(newData1 == newData2);
 	}
 }

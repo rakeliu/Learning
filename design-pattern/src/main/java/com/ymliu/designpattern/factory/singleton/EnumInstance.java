@@ -22,20 +22,32 @@
  * SOFTWARE.
  */
 
-package com.ymliu.designpattern.factory.simplefactory;
+package com.ymliu.designpattern.factory.singleton;
 
 /**
- * 具体生产类 PYTHON
+ * 枚举式单例
+ *
  * @author LYM
  */
-public class PythonVideo extends BaseVideo
+public enum EnumInstance
 {
 	/**
-	 * 生产PYTHON。
+	 * 单例
 	 */
-	@Override
-	public void produce()
+	INSTANCE;
+
+	private Object data;
+
+	public Object getData()
+	{return data;}
+
+	public void setData(Object data)
 	{
-		System.out.println("生产 PythonVideo");
+		this.data = data;
+	}
+
+	public static EnumInstance getInstance()
+	{
+		return INSTANCE;
 	}
 }

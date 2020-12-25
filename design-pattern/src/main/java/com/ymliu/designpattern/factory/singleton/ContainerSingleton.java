@@ -22,20 +22,10 @@
  * SOFTWARE.
  */
 
-package com.ymliu.designpattern.factory.simplefactory;
+package com.ymliu.designpattern.factory.singleton;
 
 /**
- * 具体生产类 PYTHON
- * @author LYM
+ * 容器式单例
  */
-public class PythonVideo extends BaseVideo
-{
-	/**
-	 * 生产PYTHON。
-	 */
-	@Override
-	public void produce()
-	{
-		System.out.println("生产 PythonVideo");
-	}
-}
+public class ContainerSingleton
+{}
