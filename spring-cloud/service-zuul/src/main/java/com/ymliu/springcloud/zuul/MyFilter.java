@@ -72,12 +72,13 @@ public class MyFilter extends ZuulFilter
 		HttpServletRequest request = ctx.getRequest();
 		logger.info("{} >> {}", request.getMethod(), request.getRequestURL().toString());
 		Object accessToken = request.getParameter("token");
-		if (accessToken==null)
+		if (accessToken == null)
 		{
 			logger.warn("token is empty");
 			ctx.setSendZuulResponse(false);
 			ctx.setResponseStatusCode(401);
-			try {
+			try
+			{
 				ctx.getResponse().getWriter().write("token is empty");
 			}
 			catch (IOException e)

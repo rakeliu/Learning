@@ -32,6 +32,7 @@ import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 /**
  * Eureka Server 启动
+ *
  * @author 刘亚敏
  */
 @SpringBootApplication

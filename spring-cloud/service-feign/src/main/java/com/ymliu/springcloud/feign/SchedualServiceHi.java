@@ -31,11 +31,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * 定义转发接口
+ *
  * @author LYM
  */
-@FeignClient(value="service-hi", fallback = SchedualServiceHiHystric.class)
+@FeignClient(value = "service-hi", fallback = SchedualServiceHiHystric.class)
 public interface SchedualServiceHi
 {
-	@RequestMapping(value="/hi", method= RequestMethod.GET)
-	String sayHiFromClientOne(@RequestParam(value="name") String name);
+	@RequestMapping(value = "/hi", method = RequestMethod.GET)
+	String sayHiFromClientOne(@RequestParam(value = "name") String name);
 }

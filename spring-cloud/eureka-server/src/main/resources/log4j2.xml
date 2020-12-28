@@ -43,15 +43,15 @@
 	<Appenders>
 		<!-- 输出至控制台 -->
 		<Console name="console" target="SYSTEM_OUT">
-			<PatternLayout pattern="${fullPattern}"/>
+			<PatternLayout pattern="${fullPattern}" />
 		</Console>
 
 		<!-- 输出至滚动更新的文件 -->
 		<RollingFile name="rollingFile" fileName="${logDir}/${logFileName}.log"
 		             filePattern="${logDir}/$${date:yyyy-MM}/${logFileName}-%d{yyyy-MM-dd}-%i.log.gz"
 		             immediateFlush="false" append="true">
-			<PatternLayout pattern="${fullPattern}"/>
-			<SizeBasedTriggeringPolicy size="50 MB"/>
+			<PatternLayout pattern="${fullPattern}" />
+			<SizeBasedTriggeringPolicy size="50 MB" />
 		</RollingFile>
 
 		<!--
@@ -83,12 +83,12 @@
 			<!--
 			<AppenderRef ref="console"/>
 			-->
-			<AppenderRef ref="rollingFile"/>
+			<AppenderRef ref="rollingFile" />
 		</Logger>
 
 		<Root level="INFO" includeLocation="true">
-			<AppenderRef ref="console"/>
-			<AppenderRef ref="rollingFile"/>
+			<AppenderRef ref="console" />
+			<AppenderRef ref="rollingFile" />
 		</Root>
 	</Loggers>
 </Configuration>
